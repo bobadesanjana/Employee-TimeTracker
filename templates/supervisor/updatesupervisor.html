@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="testbox">
+      <form action="/addsupervisor" method="post">
+        <div class="banner">
+          <h1>Add Supervisor Form</h1>
+        </div>
+        <div class="item">
+          <p>Supervisor ID</p>
+          <input type="text" name="sup_id" value="{{session['emp_id']}}" readonly/>
+        </div>
+    
+        <div class="item">
+            <div class="name-item">
+              <select name="emp_name" placeholder="employee">
+                <!-- Loop through roles and create an <option> for each employee -->
+                {% for employee in employees %}
+                  <option value="{{ employee.emp_id }}">
+                    {{ employee.emp_id }}
+                  </option>
+                {% endfor %}
+              </select>
+              
+            </div>
+          </div>
+        <div class="btn-block">
+          <button type="submit" href="/" class="center-button">UPDATE EMPLOYEE</button>
+        </div>
+      </form>
+    </div>
+{% endblock %}

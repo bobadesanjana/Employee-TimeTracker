@@ -1,0 +1,31 @@
+<nav class="navbar">
+    <div class="nav-wrapper blue-grey darken-3">
+      
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        {% if session["is_authenticated"] and session["user"] == 'admin' %}
+        <li><a class="active" href="/#">Dashboard</a></li>
+        
+        <li><a href="/editemployee">Add/Edit Employee</a></li>
+        <li><a href="/editdepartment">Add/Edit Department</a></li>
+        
+        <li><a href="/editroles">Add/Edit Roles</a></li>
+        <li style="float:right"><a href="/logout">Logout</a></li>
+        {% elif session["is_authenticated"] and session["user"] == 'employee' %}
+        <li><a class="active" href="/#">Dashboard</a></li>
+        <li><a href="/paycheck">Pay Details</a></li>
+        <li><a href="/checkinout">Check In/Out</a></li>
+        <li><a href="/leaverequest">Request Leave</a></li>
+        <li><a href="/empleaverequest">Leave Requests</a></li>
+        <li style="float:right"><a href="/logout">Logout</a></li>
+        {% elif session["is_authenticated"] and session["user"] == 'supervisor' %}
+        <li><a class="active" href="/#">Dashboard</a></li>
+        <li><a href="/addsupervisor">Add supervisor</a></li>
+        <li><a href="/supleaverequest">Leave Requests</a></li>
+        <li><a href="/edittimes">Edit Times</a></li>
+        <li style="float:right"><a href="/logout">Logout</a></li>
+        {% else %}
+        <li><a class="active" href="/#">Employee Leave and Payroll Management</a></li>
+        {% endif %}
+      </ul>
+    </div>
+</nav>

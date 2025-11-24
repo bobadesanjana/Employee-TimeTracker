@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block content %}
+<div class="testbox">
+  <form action="/leaverequest" method="post">
+    <div class="banner">
+      <h1>Request Leave</h1>
+    </div>
+    <div class="item">
+      <input type="hidden" name="sup_id" value="{{session['sup_id']}}">
+      <p>Employee ID</p>
+      <input type="text" name="emp_id" value="{{session["emp_id"]}}" disabled/>
+    </div>
+    <div class="item">
+        <p>Leave Start Date</p>
+        <input type="date" name="start_date"  />
+        <i class="fas fa-calendar-alt"></i>
+      </div>
+      <div class="item">
+        <p>Leave End Date</p>
+        <input type="date" name="end_date"  />
+        <i class="fas fa-calendar-alt"></i>
+      </div>
+
+    <div class="item">
+      <p>Leave Reason</p>
+      <input type="text" name="leave_reason" />
+    </div>
+    <div class="btn-block">
+      <button type="submit" class="center-button" href="/">REQUEST LEAVE</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

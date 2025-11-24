@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="testbox">
+    <form method="POST" action="{{ url_for('editdepartment') }}">
+        <input type="hidden" name="request_type" value="request1">
+        <!-- Additional form fields for the first request -->
+        <p>Department Name</p>
+        <div class="name-item">
+            <input type="text" name="dept_name" placeholder="Department Name" />
+        </div>
+        <button type="submit">Search Department</button>
+    </form>
+    <form action="{{ url_for('editdepartment') }}" method="post">
+        <div class="banner">
+            <h1>Update Department Form</h1>
+        </div>
+        <input type="hidden" name="request_type" value="request2">
+        <div class="item">
+            <p>Department Name</p>
+            <div class="name-item">
+                <input type="text" name="dept_name" placeholder="Department name" value="{{department['dept_name']}}" />
+            </div>
+        </div>
+        <div class="item">
+            <p>Department Description</p>
+            <div class="name-item">
+                <input type="text" name="dept_desc" placeholder="Department description" value="{{department['dept_desc']}}" />
+            </div>
+        </div>
+        <div class="btn-block">
+            <div class="button-container">
+                <button type="submit" name="action" value="update" class="left-button">UPDATE DEPARTMENT</button>
+                <button type="submit" name="action" value="add" class="right1-button">ADD DEPARTMENT</button>
+                <button type="submit" name="action" value="delete" class="right-button">DELETE DEPARTMENT</button>
+                <button type="submit" name="action" value="cancel" class="center-button">CANCEL</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

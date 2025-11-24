@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="testbox">
+    <form method="POST" action="{{ url_for('editroles') }}">
+        <input type="hidden" name="request_type" value="request1">
+        <!-- Additional form fields for the first request -->
+        <p>Role Name</p>
+        <div class="name-item">
+            <input type="text" name="role_name" placeholder="Role Name" />
+        </div>
+        <button type="submit">Search Role</button>
+    </form>
+    <form action="{{ url_for('editroles') }}" method="post">
+        <div class="banner">
+            <h1>Update Role Form</h1>
+        </div>
+        <input type="hidden" name="request_type" value="request2">
+        <div class="item">
+            <p>Role Name</p>
+            <div class="name-item">
+                <input type="text" name="role_name" placeholder="Role name" value="{{role['role_name']}}" />
+            </div>
+        </div>
+        <div class="item">
+            <p>Role Permission</p>
+            <div class="name-item">
+                <input type="text" name="role_permission" placeholder="Role permission" value="{{role['role_permission']}}" />
+            </div>
+        </div>
+        <div class="btn-block">
+            <div class="button-container">
+                <button type="submit" name="action" value="update" class="left-button">UPDATE ROLE</button>
+                <button type="submit" name="action" value="add" class="right1-button">ADD ROLE</button>
+                <button type="submit" name="action" value="delete" class="right-button">DELETE ROLE</button>
+                <button type="submit" name="action" value="cancel" class="center-button">CANCEL</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %} {% block content %}
+<div class="row">
+  <div class="main-column" style="width:100%">
+    <h2>Welcome, {{employee.first_name}}</h2>
+    <!-- {% if session['in_disabled'] %}
+    <mark>You are clocked in</mark>
+    {% else %}
+    <mark>You are not clocked in yet</mark>
+    {% endif %} -->
+    <div class="section">
+      <div class="section-title">Personal Information</div>
+      <div class="item">
+        <div class="name-item">
+          <div><strong>First Name:</strong> {{employee.first_name}}</div>
+          <div><strong>Last Name:</strong> {{employee.last_name}}</div>
+        </div>
+        <div class="name-item">
+          <div><strong>Email:</strong> {{employee.email}}</div>
+          <div><strong>Phone:</strong> {{employee.phone_number}}</div>
+        </div>
+        <div class="name-item">
+          <div><strong>Address:</strong> {{employee.street_address}}</div>
+          <div><strong>Address1:</strong> {{employee.street_address1}}</div>
+        </div>
+        <div class="name-item">
+          <div><strong>City:</strong> {{employee.city_name}}</div>
+          <div><strong>Region:</strong> {{employee.region_name}}</div>
+        </div>
+        <div class="name-item">
+          <div><strong>Postal Code:</strong> {{employee.zip_code}}</div>
+          <div><strong>Country:</strong> {{employee.country_name}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">Employment Information</div>
+      <div class="item">
+        <div class="name-item">
+          <div><strong>Designation:</strong> {{employee.role_name}}</div>
+          <div><strong>Department:</strong> {{employee.dept_name}}</div>
+        </div>
+        <div class="name-item">
+          <div><strong>Job Type:</strong> {{employee.job_type}}</div>
+          <div><strong>Leave Balance:</strong> {{employee.leave_balance}}</div>
+        </div>
+        <div class="name-item">
+          <div><strong>Date of Joining:</strong> {{employee.doj}}</div>
+          <div><strong>PayCheck Type:</strong> {{employee.paycheck_type}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">Other Information</div>
+      <div class="item">
+        <div class="name-item">
+          <div><strong>Date of Birth:</strong> {{employee.dob}}</div>
+          <div><strong>Gender:</strong> {{employee.gender}}</div>
+        </div>
+        
+        <div class="name-item">
+          <div><strong>Hourly rate:</strong> ${{employee.hourly_rate}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

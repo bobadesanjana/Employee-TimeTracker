@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Paycheck</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        line-height: 1.4;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .header h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      .table th {
+        background-color: #f2f2f2;
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+      }
+      .table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+      }
+      .total {
+        text-align: right;
+        margin-top: 20px;
+      }
+      .total span {
+        font-weight: bold;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Paycheck</h1>
+        <p>Employee Name: {{employee['first_name']}} {{employee['last_name']}}</p>
+        <p>Employee ID: {{ paycheck['emp_id'] }}</p>
+        <p>Date: {{ todaydate }}</p>
+
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Employee ID</th>
+            <th>Date</th>
+            {% if employee['job_type'] == 'Salaried' %}
+            <th>Basic Salary</th>
+            <th>Tax Deduction</th>
+            <th>Net Pay</th>
+            {% else %}
+            <th>Hours Worked</th>
+            <th>Hourly Rate</th>
+            <th>Tax Deduction</th>
+            <th>Net Pay</th>
+            {% endif %}
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+
+            <td>{{ paycheck['emp_id'] }}</td>
+            <td>{{ paycheck['payment_date'] }}</td>
+            {% if employee['job_type'] == 'Salaried' %}
+            <td>{{ salary }}</td>
+            <td>{{ employee['tax'] }}</td>
+            <td>{{ netpay}}</td>
+            {% else %}
+            <td>{{ paycheck['hours_worked'] }}</td>
+            <td>{{ paycheck['hourly_rate'] }}</td>
+            <td>{{ paycheck['tax_deduction'] }}</td>
+            <td>{{ paycheck['net_pay'] }}</td>
+            {% endif %}
+          </tr>
+        </tbody>
+      </table>
+      <div class="total">
+        {% if employee['job_type'] == 'Salaried' %}
+        <span>Total: {{ netpay }}</span>
+        {% else %}
+        <span>Total: {{ paycheck['net_pay'] }}</span>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<div class="testbox">
+  <form action="/updateleave" method="post">
+    <div class="banner">
+      <h1>Leave Request</h1>
+    </div>
+    <div class="item">
+      <input type="hidden" name="sup_id" value="{{session['sup_id']}}">
+      <p>Employee ID</p>
+      <input type="text" name="emp_id" value={{leave['emp_id']}} readonly/>
+    </div>
+    <div class="item">
+        <p>Leave Start Date</p>
+        <input type="date" name="start_date"  value="{{leave['start_date']}}"/>
+        <i class="fas fa-calendar-alt"></i>
+      </div>
+      <div class="item">
+        <p>Leave End Date</p>
+        <input type="date" name="end_date"  value="{{leave['end_date']}}"/>
+        <i class="fas fa-calendar-alt"></i>
+      </div>
+
+    <div class="item">
+      <p>Leave Reason</p>
+      <input type="text" name="leave_reason" value="{{leave['reason']}}"/>
+    </div>
+    <div class="item">
+      <p>Comment</p>
+      <input type="text" name="leave_comment" value="{{leave['comment']}}"/>
+    </div>
+    <div class="item">
+      <div class="item">
+        <select name="status">
+          <option value="Approved">Approved</option>
+          <option value="Rejected">Rejected</option>
+        </select>            
+      </div>
+    </div>
+    <div class="btn-block">
+      <button type="submit" class="center-button" href="/">UPDATE LEAVE</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

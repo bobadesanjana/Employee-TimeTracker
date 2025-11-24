@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+<div class="main-column"></div>
+<div id = "MyClockDisplay" class = "clock" onload = "showTime()"> </div>  
+</div>
+<div class="side-column">
+    <h2>Employee Clock-In System</h2>
+    <form action="/" method="post">
+      <label for="employee_id">Employee ID:</label>
+      <input
+        type="text"
+        id="employee_id"
+        name="employee_id"
+        value="{{employee.emp_id}}"
+        disabled
+      /><br />
+      <div class="item">
+        <p>Attendance Notes:</p>
+        <textarea rows="3" name="notes" placeholder="Timesheet notes"></textarea>
+      </div>
+      <input type="submit" name="clockin_btn" value="Clock-In" {% if
+      session['in_disabled'] %}disabled{% endif %}> <input type="submit"
+      name="clockout_btn" value="Clock_Out" {% if session['out_disabled']
+      %}disabled{% endif %}>
+    </form>
+<script>  
+    function showTime(){  
+        var date = new Date();  
+        var h = date.getHours();  
+        var m = date.getMinutes();  
+        var s = date.getSeconds();  
+        var session = "AM";  
+        if(h == 0) {  
+            h = 12;  
+        }  
+        if(h > 12) {  
+            // hh = h - 12;  
+            h = h -12;
+            session = "PM";  
+        }  
+        h = (h < 10) ? "0" + h : h;  
+        m = (m < 10) ? "0" + m : m;  
+        s = (s < 10) ? "0" + s : s;  
+        var time = h + ":" + m + ":" + s + " " + session;  
+        document.getElementById("MyClockDisplay").innerText = time;  
+        document.getElementById("MyClockDisplay").textContent = time;  
+        setTimeout(showTime, 1000);  
+    }  
+    showTime();  
+    </script> 
+{% endblock %}

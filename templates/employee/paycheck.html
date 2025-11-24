@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="banner">
+    <h1>Paycheck Details</h1>
+  </div>
+	<table>
+		<tr>
+			<th>Paycheck Status</th>
+            <th>Date</th>
+            {% if employee['job_type'] == 'Salaried' %}
+            <th>Basic Salary</th>
+            <th>Tax Deduction</th>
+			<th>Net Pay</th>
+			{% else %}
+			<th>Hours Worked</th>
+            <th>Hourly Rate</th>
+            <th>Tax Deduction</th>
+			<th>Net Pay</th>
+			{% endif %}
+            <th>Action</th>
+		</tr>
+		{% for paycheck in paychecks %}
+        
+		<tr>
+			<td>{% if paycheck['paid']=='no' %}In Progress {% else %} Paid {% endif %}</td>
+			<td>{{ paycheck['payment_date'] }}</td>
+			{% if employee['job_type'] == 'Salaried' %}
+			<td>{{ salary }}</td>
+            <td>{{ employee['tax'] }}</td>
+			<td>{{ netpay }}</td>
+			{% else %}
+			<td>{{ paycheck['hours_worked'] }}</td>
+			<td>{{ paycheck['hourly_rate'] }}</td>
+            <td>{{ paycheck['tax_deduction'] }}</td>
+			<td>{{ paycheck['net_pay'] }}</td>
+			{% endif %}
+            <td><a href="/generatepdf/{{ paycheck['payment_date'].replace('/', '-') }}" target="_blank">Generate PDF</a></td>
+		</tr>
+		{% endfor %}
+	</table>
+{% endblock %}

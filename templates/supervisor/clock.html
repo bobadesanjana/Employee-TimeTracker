@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="testbox">
+    <form method="POST" action="{{ url_for('edittimes') }}">
+        <input type="hidden" name="request_type" value="request1">
+        <!-- Additional form fields for the first request -->
+        <div class="name-item">
+            <select name="emp_name" placeholder="employee">
+              <!-- Loop through roles and create an <option> for each employee -->
+              {% for employee in employees %}
+              <option value="{{ employee.emp_id }}">
+                {{ employee.emp_id }}
+              </option>
+              {% endfor %}
+            </select>
+    
+          </div>
+        <button type="submit">Search Employee</button>
+    </form>
+    <table>
+        <tr>
+            <th>Emp ID</th>
+            <th>Date</th>
+            <th>Clock In</th>
+            <th>Clock Out</th>
+            <th>Action</th>
+        </tr>
+        {% for attendance in attendances %}
+    
+        <tr>
+            <td>{{ attendance['emp_id'] }}</td>
+            <td>{{ attendance['date'] }}</td>
+            <td>{{ attendance['check_in'] }}</td>
+            <td>{{ attendance['check_out'] }}</td>
+            <td><a href="/editclock+{{attendance._id}}">Edit Times</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

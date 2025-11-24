@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    <div class="testbox">
+        <form method="POST" action="{{ url_for('editemployee') }}">
+            <input type="hidden" name="request_type" value="request1">
+            <!-- Additional form fields for the first request -->
+            <p>Employee ID</p>
+          <div class="name-item">
+            <input type="text" name="emp_id" placeholder="E ID" />  
+          </div>
+            <button type="submit">Search Employee</button>
+        </form>
+      <form action="{{ url_for('editemployee') }}" method="post">
+        <div class="banner">
+          <h1>Update Employee Form</h1>
+        </div>
+        <input type="hidden" name="request_type" value="request2">
+        <div class="item">
+            <p>Employee ID</p>
+            <div class="name-item">
+              <input type="text" name="emp_id" placeholder="E ID" value="{{employee['emp_id']}}" />
+              
+            </div>
+          </div>
+          <div class="item">
+            <p>Name</p>
+            <div class="name-item">
+              <input type="text" name="first_name" placeholder="First" value="{{employee['first_name']}}"/>
+              <input type="text" name="last_name" placeholder="Last" value="{{employee['last_name']}}"/>
+            </div>
+          </div>
+          <div class="item">
+            <p>Email</p>
+            <input type="text" name="email" value="{{employee['email']}}"/>
+          </div>
+          <div class="item">
+            <p>Password</p>
+            <input type="password" name="password" value="{{employee['password']}}"/>
+          </div>
+          <div class="item">
+            <p>Phone</p>
+            <input type="text" name="phone_number" value="{{employee['phone_number']}}"/>
+          </div> 
+          <div class="item">
+            <div class="city-item">
+              <select name="gender_name">
+                <option value="">Sex</option>
+                
+                {% if employee['gender'] == 'Male' %}
+                <option value="Male" selected>Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+                {% elif employee['gender'] == 'Female' %}
+                <option value="Male">Male</option>
+                <option value="Female" selected>Female</option>
+                <option value="Other">Other</option>
+                {% elif employee['gender'] == 'Other' %}
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other" selected>Other</option>
+                {% else %}
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+                {% endif %}
+              </select>            
+  
+              <select name="job_type" >
+                <option value="">Job Type</option>
+                {% if employee['job_type'] == 'Fulltime' %}
+                <option value="Salaried" selected>Salaried</option>
+                <option value="Hourly">Hourly</option>
+                {% else %}
+                <option value="Salaried" >Salaried</option>
+                <option value="Hourly" selected>Hourly</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+          <div class="item">
+            <div class="name-item">
+              <select name="role_name" placeholder="Role">
+                <!-- Loop through roles and create an <option> for each role -->
+                {% for role in roles %}
+                  <option value="{{ role.role_name }}" {% if role.value == role['role_name'] %}selected{% endif %}>
+                    {{ role.role_name }}
+                  </option>
+                {% endfor %}
+              </select>
+              
+              <select name="dept_name" placeholder="Role">
+                <!-- Loop through roles and create an <option> for each role -->
+                {% for department in departments %}
+                  <option value="{{ department.dept_name }}" {% if department.value == department['dept_name'] %}selected{% endif %}>
+                    {{ department.dept_name }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="item">
+            <p>Contact Address</p>
+            <input type="text" name="street_address" placeholder="Street address"  value="{{employee['street_address']}}"/>
+            <input type="text" name="street_address1" placeholder="Street address line 2" value="{{employee['street_address1']}}"/>
+            <div class="city-item">
+              <input type="text" name="city_name" placeholder="City" value="{{employee['city_name']}}"/>
+              <input type="text" name="region_name" placeholder="Region"  value="{{employee['region_name']}}"/>
+              <input type="text" name="zip_code" placeholder="Postal / Zip code" value="{{employee['zip_code']}}"/>
+              <input type="text" name="country_name" placeholder="Country" value="{{employee['country_name']}}"/>
+            </div>
+          </div>
+          <div class="item">
+            <div class="city-item">
+              <select name="paycheck_type">
+                <option value="">Paycheck Type</option>
+                {% if employee['paycheck_type'] == 'Bi-Weekly' %}
+                <option value="Bi-Weekly" selected>Bi-Weekly</option>
+                <option value="Monthly">Monthly</option>
+                {% else %}
+                <option value="Bi-Weekly">Bi-Weekly</option>
+                <option value="Monthly" selected>Monthly</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+          <div class="item">
+            <p>DOB</p>
+            <input type="date" name="dob"  value="{{employee['dob']}}"/>
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <div class="item">
+            <p>DOJ</p>
+            <input type="date" name="doj"  value="{{employee['doj']}}" />
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <div class="item">
+            <p>Salary</p>
+            <input type="text" name="salary" value="{{employee['salary']}}" />
+          </div>
+          <div class="item">
+            <p>Hourly Rate</p>
+            <input type="text" name="hourly_rate" value="{{employee['hourly_rate']}}" />
+          </div>
+          <div class="item">
+            <p>Leave Balance</p>
+            <input type="text" name="leave" value="{{employee['leave_balance']}}" />
+          </div>
+          <div class="item">
+            <p>Tax</p>
+            <input type="text" name="tax" value="{{employee['tax']}}" />
+          </div>
+          <div class="item">
+            <p>Social Security Number</p>
+            <input type="password" name="ssn_number" placeholder="SSN" value="{{employee['ssn_number']}}" />
+          </div>
+          <div class="item">
+            <p>Notes</p>
+            <textarea rows="3" name="notes" >{{employee['notes']}}</textarea>
+          </div>
+          <div class="btn-block">
+            <div class="button-container">
+                <button type="submit" name="action" value="update" class="left-button">UPDATE EMPLOYEE</button>
+                <button type="submit" name="action" value="add" class="right1-button">ADD EMPLOYEE</button>
+                <button type="submit" name="action" value="delete" class="right-button">DELETE EMPLOYEE</button>
+                <button type="submit" name="action" value="cancel" class="center-button">CANCEL</button>
+              </div>
+          </div>
+      </form>
+    </div>
+{% endblock %}

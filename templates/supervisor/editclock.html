@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block content %}
+<div class="testbox">
+  <form action="/edittimecheck+{{attendance['_id']}}" method="post">
+    <div class="banner">
+      <h1>Edit Clock in/ out Times</h1>
+    </div>
+    <div class="item">
+      <p>Employee ID</p>
+      <input type="text" name="emp_id" value="{{attendance["emp_id"]}}" disabled/>
+    </div>
+    <div class="item">
+        <p>Clock In</p>
+        <input type="datetime" name="start_date"  value="{{attendance["check_in"]}}" />
+        <i class="fas fa-calendar-alt"></i>
+      </div>
+      <div class="item">
+        <p>Clock out</p>
+        <input type="datetime" name="end_date" value="{{attendance["check_out"]}}" />
+        <i class="fas fa-calendar-alt"></i>
+      </div>
+    <div class="btn-block">
+      <button type="submit" class="center-button" href="/">UPDATE TIMES</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
